@@ -1,0 +1,1 @@
+# Incremental-Data-Analysis-in-Microsoft-fabrics
