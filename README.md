@@ -13,6 +13,10 @@ The business aims to analyze large-scale sales data with daily growth and ensure
 * **Real-Time Insights** – Use Power BI to reflect the latest sales data and trigger alerts based on thresholds.
 * **Data Quality Handling** – Deduplicate records and handle null values before reporting.
 
+
+![Beige Minimal Flowchart Infographic Graph](https://github.com/user-attachments/assets/e2c28914-f2a9-42ed-845b-fe7104b058b4)
+
+
 ## Solution Overview:
 
 To address these requirements, the solution consists of:
