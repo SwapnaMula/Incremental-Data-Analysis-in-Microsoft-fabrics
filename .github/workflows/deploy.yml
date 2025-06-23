@@ -3,7 +3,7 @@ name: Fabric CI/CD
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:  # allows manual trigger
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -18,18 +18,14 @@ jobs:
       with:
         python-version: 3.10
 
-    - name: Validate notebooks
+    - name: Install notebook tools
       run: |
-        pip install nbconvert
-        jupyter nbconvert --execute notebooks/silver_notebook.ipynb --to notebook --stdout
+        pip install nbconvert jupyter
 
-    - name: Deploy Power BI report (example)
+    - name: Run Silver Notebook
       run: |
-        echo "Deploying Power BI report..."
-        # You'd use Power BI REST API or pbi-tools here
-        # This is just a placeholder
+        jupyter nbconvert --execute "Notebook Transformations/New Notebooks/Silver_Notebook.ipynb" --to notebook --stdout
 
-    # OPTIONAL: Deploy Fabric artifacts via API
-    # - name: Deploy notebook to Microsoft Fabric (placeholder)
-    #   run: |
-    #     curl -X POST https://api.fabric.microsoft.com/...
+    - name: Run Gold Notebook
+      run: |
+        jupyter nbconvert --execute "Notebook Transformations/New Notebooks/Gold_Notebook.ipynb" --to notebook --stdout
