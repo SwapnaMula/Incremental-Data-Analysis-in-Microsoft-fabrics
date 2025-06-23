@@ -1,0 +1,35 @@
+name: Fabric CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # allows manual trigger
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Validate notebooks
+      run: |
+        pip install nbconvert
+        jupyter nbconvert --execute notebooks/silver_notebook.ipynb --to notebook --stdout
+
+    - name: Deploy Power BI report (example)
+      run: |
+        echo "Deploying Power BI report..."
+        # You'd use Power BI REST API or pbi-tools here
+        # This is just a placeholder
+
+    # OPTIONAL: Deploy Fabric artifacts via API
+    # - name: Deploy notebook to Microsoft Fabric (placeholder)
+    #   run: |
+    #     curl -X POST https://api.fabric.microsoft.com/...
